@@ -54,19 +54,101 @@ fn main() {
 
       for s in 0..m {
         value += c[s][i] * c[s][j];
-
-        println!("{} * {} = {}", c[s][i], c[s][j], c[s][i] * c[s][j]);
       }
 
       
       value = value * (1.0/(n as f32)) ;
-
-      println!("Value: {}", value);
 
       result_matrix[i][j] = value;
       result_matrix[j][i] = value;
     }
   }
 
-  println!("{:?}", result_matrix);
+  let mut confirm_v = String::new();
+  let mut x: Vec<f32> = vec![0.0; n];
+  let mut u: Vec<Vec<f32>> = vec![vec![0.0; n]];
+  let mut y: Vec<Vec<f32>> = vec![vec![0.0; n]];
+  let mut converge = false;
+
+  println!("¿Definir patrón de comprobación? (s/n):");
+
+  io::stdin()
+    .read_line(&mut confirm_v)
+    .expect("Failed to read line");
+
+  if confirm_v == "s" {
+    for index_p in 0..n {
+      let mut value = String::new();
+
+      io::stdin()
+        .read_line(&mut value)
+        .expect("Failed to read line");
+
+      let value: f32 = value.trim().parse().expect("You must provide a integer value");
+
+      x[index_p] = value;
+    }
+  } else {
+    x = c[0].clone();
+  }
+
+  u[0] = x;
+  y[0] = fh(u[0].clone());
+
+  while !converge {
+    let mut actual_u: Vec<f32> = vec![0.0; n];
+
+    for row in 0..n {
+      let mut value: f32 = 0.0;
+      
+      for p_idx in 0..n {
+
+        value += result_matrix[row][p_idx] * y[y.len() - 1][p_idx];
+
+        println!("{}", result_matrix[row][p_idx] * y[y.len() - 1][p_idx]);
+
+      }
+      
+      actual_u[row] = value;
+    }
+    
+    u.push(actual_u);
+  
+    y.push(fh(u[u.len() - 1].clone()));
+        
+    if compare(&y[y.len() - 2], &y[y.len() - 1]) {
+      for c_idx in 0..c.len() {
+        if compare(&c[c_idx], &y[y.len() - 1]) {
+          println!("Converge y Y({}) se asocia con C{}", y.len() - 1, c_idx);
+          break;
+        }
+      }
+
+      converge = true;
+    }
+  }
+}
+
+fn fh(p: Vec<f32>) -> Vec<f32> {
+  let mut result: Vec<f32> = vec![0.0; p.len()];
+
+  for idx in 0..p.len() {
+    if p[idx] >= 0.0 {
+      result[idx] = 1.0;
+    } else {
+      result[idx] = -1.0;
+    }
+  }
+
+  return result;
+}
+
+fn compare(y1: &Vec<f32>, y2: &Vec<f32>) -> bool {
+  for index in 0..(y1.len()) {
+    if y1[index] != y2[index] {
+      return false;
+    }
+  }
+
+  return true;
 }
