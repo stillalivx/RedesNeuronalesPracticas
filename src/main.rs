@@ -1,4 +1,4 @@
-use std::{fs, io, vec};
+use std::{io, vec};
 
 use image::GenericImageView;
 
@@ -7,9 +7,22 @@ fn main() {
     let mut img_inputs: Vec<(Vec<f64>, String)> = vec![];
     let mut img_dimensions: (u32, u32) = (0, 0);
 
-    for file in fs::read_dir("test/images/6x6-patterns").unwrap() {
-        let file = file.expect("Error al leer el archivo");
-        let img = image::open(file.path()).unwrap();
+    loop {
+        let mut img_input = String::new();
+
+        println!("Ruta de imagen:");
+
+        io::stdin()
+            .read_line(&mut img_input)
+            .expect("Error al leer el path del archivo");
+
+        img_input = img_input.trim().to_string();
+
+        if img_input == ".next" {
+            break;
+        }
+
+        let img = image::open(&img_input).unwrap();
 
         if img_dimensions == (0, 0) {
             img_dimensions = img.dimensions();
@@ -19,25 +32,33 @@ fn main() {
         }
 
         let pattern: Vec<f64> = fh_image(img.to_luma8().into_vec());
-        let name = file.file_name().into_string().unwrap();
+        let name = img_input;
 
         img_inputs.push((pattern, name));
     }
 
     let w = generate_w(&img_inputs);
-    let mut x_pattern = String::new();
+    let mut img_input = String::new();
 
-    println!("\nEscoger imagen de prueba:");
+    println!("\nRuta de imagen de prueba:");    
 
-    for (i, img) in img_inputs.iter().enumerate() {
-        println!("{i} - {}", img.1);
+    io::stdin().read_line(&mut img_input).unwrap();
+
+    img_input = img_input.trim().to_string();
+
+    let testing_img = image::open(&img_input).unwrap();
+
+    if img_dimensions != testing_img.dimensions() {
+        println!("Las imágenes deben de tener la misma dimensión");
+        return;
     }
 
-    io::stdin().read_line(&mut x_pattern).unwrap();
+    let pattern: Vec<f64> = fh_image(testing_img.to_luma8().into_vec());
+    let name = img_input;
 
-    let x_pattern: usize = x_pattern.trim().parse().expect("Indice incorrecto");
+    let x_image = (pattern, name);
 
-    verification(w, &img_inputs, &img_inputs[x_pattern]);
+    verification(w, &img_inputs, &x_image);
 }
 
 
@@ -161,6 +182,9 @@ fn fh(p: Vec<f64>) -> Vec<f64> {
 
 
 fn compare(v1: &Vec<f64>, v2: &Vec<f64>) -> bool {
+    println!("{:?}", v1);
+    println!("{:?}", v2);
+
     for index in 0..(v1.len()) {        
         if v1[index] != v2[index] {
             return false;
