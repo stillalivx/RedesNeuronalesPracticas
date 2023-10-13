@@ -38,27 +38,31 @@ fn main() {
     }
 
     let w = generate_w(&img_inputs);
-    let mut img_input = String::new();
-
-    println!("\nRuta de imagen de prueba:");    
-
-    io::stdin().read_line(&mut img_input).unwrap();
-
-    img_input = img_input.trim().to_string();
-
-    let testing_img = image::open(&img_input).unwrap();
-
-    if img_dimensions != testing_img.dimensions() {
-        println!("Las imágenes deben de tener la misma dimensión");
-        return;
+    
+    loop {
+        let mut img_input = String::new();
+        
+        println!("\nRuta de imagen de prueba:");    
+    
+        io::stdin().read_line(&mut img_input).unwrap();
+    
+        img_input = img_input.trim().to_string();
+    
+        let testing_img = image::open(&img_input).unwrap();
+    
+        if img_dimensions != testing_img.dimensions() {
+            println!("Las imágenes deben de tener la misma dimensión");
+            return;
+        }
+    
+        let pattern: Vec<f64> = fh_image(testing_img.to_luma8().into_vec());
+        let name = img_input;
+    
+        let x_image = (pattern, name);
+    
+        verification(w.clone(), &img_inputs, &x_image);
     }
 
-    let pattern: Vec<f64> = fh_image(testing_img.to_luma8().into_vec());
-    let name = img_input;
-
-    let x_image = (pattern, name);
-
-    verification(w, &img_inputs, &x_image);
 }
 
 
@@ -182,10 +186,7 @@ fn fh(p: Vec<f64>) -> Vec<f64> {
 
 
 fn compare(v1: &Vec<f64>, v2: &Vec<f64>) -> bool {
-    println!("{:?}", v1);
-    println!("{:?}", v2);
-
-    for index in 0..(v1.len()) {        
+    for index in 0..(v1.len()) {
         if v1[index] != v2[index] {
             return false;
         }
