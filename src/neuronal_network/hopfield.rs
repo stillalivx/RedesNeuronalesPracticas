@@ -5,7 +5,14 @@ use crate::input::{get_input, get_test_pattern};
 pub fn execute(matches: &Matches) {
 
     // Leemos las matrices de entrada
-    let input: Vec<(Vec<f64>, String)> = get_input(&matches);
+    let raw_input: Vec<(Vec<i8>, String)> = get_input(&matches);
+    let mut input: Vec<(Vec<f64>, String)> = vec![];
+
+    // Normalizamos los valores de la matriz, obteniendo una matriz de valores 1 o -1
+    for item in raw_input {
+        input.push(standard_input(item));
+    }
+
     // En base a las entradas creamos la matriz de peso
     let weight_matrix = create_weight_matrix(&input);
 
@@ -20,7 +27,8 @@ pub fn execute(matches: &Matches) {
         let mut y_matrices: Vec<(Vec<f64>, String)> = vec![];
 
         // Se pide la matriz de prueba
-        let test_input = get_test_pattern(&matches, input[0].0.len());
+        let test_input = standard_input(get_test_pattern(&matches, input[0].0.len()));
+
         let input_matrix = matrix_transformation(&test_input.0);
 
         // Se almacena la matriz como Y0
@@ -118,6 +126,7 @@ fn evaluation(weight_matrix: &Vec<Vec<f64>>, x_matrix: &Vec<f64>) -> Vec<f64> {
     matrix_transformation(&u_matrix_result)
 }
 
+// Transforma una matriz de acuerdo a la función de transformación
 fn matrix_transformation(matrix: &Vec<f64>) -> Vec<f64> {
     let n = matrix.len();
     let mut transformed_matrix: Vec<f64> = vec![0.0; n];
@@ -129,12 +138,13 @@ fn matrix_transformation(matrix: &Vec<f64>) -> Vec<f64> {
     transformed_matrix
 }
 
-pub fn image_transformation(matrix: &Vec<u8>) -> Vec<f64> {
-    let n = matrix.len();
-    let mut transformed_matrix: Vec<f64> = vec![0.0; n];
 
-    for i in 0..n {
-        transformed_matrix[i] = if matrix[i] > 0 { 1.0 } else { -1.0 };
+pub fn standard_input(matrix: (Vec<i8>, String)) -> (Vec<f64>, String) {
+    let n = matrix.0.len();
+    let mut transformed_matrix: (Vec<f64>, String) = (vec![0.0; n], matrix.1);
+
+    for j in 0..n {
+        transformed_matrix.0[j] = if matrix.0[j] > 0 { 1.0 } else { -1.0 };
     }
 
     transformed_matrix

@@ -1,10 +1,8 @@
 use getopts::{Matches};
 use std::{fs, io};
 
-use crate::neuronal_network::hopfield;
-
-pub fn get_input(matches: &Matches) -> Vec<(Vec<f64>, String)> {
-    let mut input: Vec<(Vec<f64>, String)> = vec![];
+pub fn get_input(matches: &Matches) -> Vec<(Vec<i8>, String)> {
+    let mut input: Vec<(Vec<i8>, String)> = vec![];
     let mut n: usize = 0;
 
     // Si es verdad, el programa esperará que la entrada de la red neuronal
@@ -23,11 +21,14 @@ pub fn get_input(matches: &Matches) -> Vec<(Vec<f64>, String)> {
             for file in images_path {
                 let file = file.expect("Error reading file");
                 let img = image::open(file.path()).expect("The file is not an image");
-                let mut input_matrix = vec![];
 
-                if  matches.opt_present("hopfield") {
-                    input_matrix = hopfield::image_transformation(&img.to_luma8().into_vec());
-                }
+                // Convertimos la imágen en un Vec<u8> para posteriormente
+                // convertirlo en Vec<i8>
+                let input_matrix: Vec<i8> = img.to_luma8()
+                    .into_vec()
+                    .iter()
+                    .map(|&p| p as i8)
+                    .collect();
 
                 if n == 0 {
                     n = input_matrix.len();
@@ -61,11 +62,14 @@ pub fn get_input(matches: &Matches) -> Vec<(Vec<f64>, String)> {
 
                 let file_name: Vec<&str> = value.split(&['/', '\\']).collect();
                 let file_name = file_name[file_name.len() - 1];
-                let mut input_matrix = vec![];
 
-                if  matches.opt_present("hopfield") {
-                    input_matrix = hopfield::image_transformation(&img.to_luma8().into_vec());
-                }
+                // Convertimos la imágen en un Vec<u8> para posteriormente
+                // convertirlo en Vec<i8>
+                let input_matrix: Vec<i8> = img.to_luma8()
+                    .into_vec()
+                    .iter()
+                    .map(|&p| p as i8)
+                    .collect();
 
                 if n == 0 {
                     n = input_matrix.len();
@@ -95,9 +99,10 @@ pub fn get_input(matches: &Matches) -> Vec<(Vec<f64>, String)> {
             }
 
             let neurons: Vec<&str> = value.split(' ').collect();
+            // Convertimos la entrada a valores i8
             let neurons: Vec<_> = neurons
                 .iter()
-                .map(|n| n.parse::<f64>().expect("Neuron value invalid"))
+                .map(|n| n.parse::<i8>().expect("Neuron value invalid"))
                 .collect();
 
             if n == 0 {
@@ -113,7 +118,9 @@ pub fn get_input(matches: &Matches) -> Vec<(Vec<f64>, String)> {
     input
 }
 
-pub fn get_test_pattern(matches: &Matches, n: usize) -> (Vec<f64>, String) {
+pub fn get_test_pattern(matches: &Matches, n: usize) -> (Vec<i8>, String) {
+    // En caso de que -i haya sido invocado se esperará que el patrón de prueba
+    // sea la ruta de una imágen
     return if matches.opt_present("i") {
         let mut value = String::new();
 
@@ -130,13 +137,21 @@ pub fn get_test_pattern(matches: &Matches, n: usize) -> (Vec<f64>, String) {
         let file_name: Vec<&str> = value.split(&['/', '\\']).collect();
         let file_name = file_name[file_name.len() - 1];
 
-        let input_matrix = hopfield::image_transformation(&img.to_luma8().into_vec());
+        // Convertimos la imágen en un Vec<u8> para posteriormente
+        // convertirlo en Vec<i8>
+        let input_matrix: Vec<i8> = img.to_luma8()
+            .into_vec()
+            .iter()
+            .map(|&p| p as i8)
+            .collect();
 
         if input_matrix.len() != n {
             panic!("The image must has the same number of neurons");
         }
 
         (input_matrix, file_name.to_string())
+    // En caso de que no se espere que el patrón de prueba no sea una imágen
+    // se esperará la matriz como entrada
     } else {
         let mut value = String::new();
 
@@ -149,9 +164,10 @@ pub fn get_test_pattern(matches: &Matches, n: usize) -> (Vec<f64>, String) {
         let value = value.trim();
 
         let neurons: Vec<&str> = value.split(' ').collect();
+        // Convertimos la entrada a valores i8
         let neurons: Vec<_> = neurons
             .iter()
-            .map(|n| n.parse::<f64>().expect("Neuron value invalid"))
+            .map(|n| n.parse::<i8>().expect("Neuron value invalid"))
             .collect();
 
         if neurons.len() != n {
