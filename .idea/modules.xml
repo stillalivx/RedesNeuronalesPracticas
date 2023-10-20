@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/red-hopfield.iml" filepath="$PROJECT_DIR$/.idea/red-hopfield.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/neuronal-networks.iml" filepath="$PROJECT_DIR$/.idea/neuronal-networks.iml" />
     </modules>
   </component>
 </project>
