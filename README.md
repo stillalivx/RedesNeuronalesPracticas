@@ -17,7 +17,7 @@ Es necesario el uso de banderas para escoger la red neuronal que se desea usar. 
 | **Flag**   | **Red neuronal**                                           |
 |------------|------------------------------------------------------------|
 | --hopfield | [Hopfield](https://en.wikipedia.org/wiki/Hopfield_network) |
-
+| --hamming  | Hamming                                                    |
 Una vez escogida la red neuronal que se desea ejecutar, agregar la bandera al comando ```cargo run```:
 
 ```shell

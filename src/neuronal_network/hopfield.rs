@@ -1,6 +1,7 @@
 use getopts::Matches;
 
 use crate::input::{get_input, get_test_pattern};
+use crate::utils::{ones_standard_input, ones_matrix_transformation};
 
 pub fn execute(matches: &Matches) {
 
@@ -10,7 +11,7 @@ pub fn execute(matches: &Matches) {
 
     // Normalizamos los valores de la matriz, obteniendo una matriz de valores 1 o -1
     for item in raw_input {
-        input.push(standard_input(item));
+        input.push(ones_standard_input(item));
     }
 
     // En base a las entradas creamos la matriz de peso
@@ -27,9 +28,9 @@ pub fn execute(matches: &Matches) {
         let mut y_matrices: Vec<(Vec<f64>, String)> = vec![];
 
         // Se pide la matriz de prueba
-        let test_input = standard_input(get_test_pattern(&matches, input[0].0.len()));
+        let test_input = ones_standard_input(get_test_pattern(&matches, input[0].0.len()));
 
-        let input_matrix = matrix_transformation(&test_input.0);
+        let input_matrix = ones_matrix_transformation(&test_input.0);
 
         // Se almacena la matriz como Y0
         y_matrices.push((input_matrix, y_matrices.len().to_string()));
@@ -108,7 +109,7 @@ fn evaluation(weight_matrix: &Vec<Vec<f64>>, x_matrix: &Vec<f64>) -> Vec<f64> {
 
     // Toma la matriz de prueba (x_matrix) como U0 y la pasa por la
     // función de transferencia para generar Y0
-    let y_matrix = matrix_transformation(&x_matrix);
+    let y_matrix = ones_matrix_transformation(&x_matrix);
 
     // Valor resultante de la evaluación
     let mut u_matrix_result: Vec<f64> = vec![0.0; n];
@@ -123,29 +124,5 @@ fn evaluation(weight_matrix: &Vec<Vec<f64>>, x_matrix: &Vec<f64>) -> Vec<f64> {
         u_matrix_result[i] = value;
     }
 
-    matrix_transformation(&u_matrix_result)
-}
-
-// Transforma una matriz de acuerdo a la función de transformación
-fn matrix_transformation(matrix: &Vec<f64>) -> Vec<f64> {
-    let n = matrix.len();
-    let mut transformed_matrix: Vec<f64> = vec![0.0; n];
-
-    for i in 0..n {
-        transformed_matrix[i] = if matrix[i] >= 0.0 { 1.0 } else { -1.0 };
-    }
-
-    transformed_matrix
-}
-
-
-pub fn standard_input(matrix: (Vec<i8>, String)) -> (Vec<f64>, String) {
-    let n = matrix.0.len();
-    let mut transformed_matrix: (Vec<f64>, String) = (vec![0.0; n], matrix.1);
-
-    for j in 0..n {
-        transformed_matrix.0[j] = if matrix.0[j] > 0 { 1.0 } else { -1.0 };
-    }
-
-    transformed_matrix
+    ones_matrix_transformation(&u_matrix_result)
 }
