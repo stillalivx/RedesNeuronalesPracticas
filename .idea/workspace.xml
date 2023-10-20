@@ -8,10 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e4d3ca2-eee1-4dc6-b2a1-35e618fbafef" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/neuronal_network/hopfield.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/neuronal_network/hopfield.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/neuronal_network/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/neuronal_network/mod.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +69,7 @@
       <option name="presentableId" value="Default" />
       <updated>1697773886877</updated>
       <workItem from="1697773887915" duration="62000" />
-      <workItem from="1697773997639" duration="2704000" />
+      <workItem from="1697773997639" duration="2900000" />
     </task>
     <servers />
   </component>
