@@ -1,7 +1,4 @@
-<center style="text-align: center;">
-  <h1>Redes Neuronales </h1>
-  Adaptación de diferentes redes neuronales en [Rust](https://www.rust-lang.org/).
-</center>
+# Redes neuronales en [Rust](https://www.rust-lang.org/)
 
 ## Instalación
 
