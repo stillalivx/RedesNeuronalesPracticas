@@ -8,13 +8,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e4d3ca2-eee1-4dc6-b2a1-35e618fbafef" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/input.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/input.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/neuronal_network/hamming.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/neuronal_network/hamming.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/neuronal_network/hopfield.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/neuronal_network/hopfield.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/neuronal_network/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/neuronal_network/mod.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/15x15-patterns/0.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/15x15-patterns/0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/15x15-patterns/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/15x15-patterns/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/15x15-patterns/1d.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/15x15-patterns/1d.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/15x15-patterns/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/15x15-patterns/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/15x15-patterns/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/15x15-patterns/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/15x15-patterns/3d.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/15x15-patterns/3d.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/15x15-patterns/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/15x15-patterns/4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/15x15-patterns/4d.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/15x15-patterns/4d.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/15x15-patterns/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/15x15-patterns/5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/15x15-patterns/5d.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/15x15-patterns/5d.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/15x15-patterns/9.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/15x15-patterns/9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/15x15-patterns/9d.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/15x15-patterns/9d.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/5x5-patterns/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/5x5-patterns/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/5x5-patterns/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/5x5-patterns/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/5x5-patterns/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/5x5-patterns/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/5x5-patterns/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/5x5-patterns/4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/5x5-patterns/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/5x5-patterns/5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/5x5-patterns/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/5x5-patterns/6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/5x5-patterns/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/5x5-patterns/7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/5x5-patterns/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/5x5-patterns/8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/6x6-patterns/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/6x6-patterns/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/6x6-patterns/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/6x6-patterns/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/6x6-patterns/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/6x6-patterns/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/6x6-patterns/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/6x6-patterns/4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/6x6-patterns/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/6x6-patterns/5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/6x6-patterns/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/6x6-patterns/6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/8x8-patterns/0.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/8x8-patterns/0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/8x8-patterns/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/8x8-patterns/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/8x8-patterns/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/8x8-patterns/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/8x8-patterns/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/8x8-patterns/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/8x8-patterns/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/8x8-patterns/4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/8x8-patterns/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/8x8-patterns/5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/8x8-patterns/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/8x8-patterns/6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/8x8-patterns/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/8x8-patterns/7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/8x8-patterns/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/8x8-patterns/8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/8x8-patterns/9.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/8x8-patterns/9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/9x9-patterns/0.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/9x9-patterns/0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/9x9-patterns/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/9x9-patterns/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/9x9-patterns/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/9x9-patterns/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/9x9-patterns/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/9x9-patterns/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/9x9-patterns/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/9x9-patterns/4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/9x9-patterns/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/9x9-patterns/5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/9x9-patterns/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/9x9-patterns/6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/9x9-patterns/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/9x9-patterns/7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/9x9-patterns/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/9x9-patterns/8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/images/9x9-patterns/9.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_test/images/9x9-patterns/9.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +123,7 @@
       <workItem from="1697863476896" duration="397000" />
       <workItem from="1698067022029" duration="23000" />
       <workItem from="1698077097548" duration="3994000" />
-      <workItem from="1698115707032" duration="5156000" />
+      <workItem from="1698115707032" duration="5465000" />
     </task>
     <servers />
   </component>
