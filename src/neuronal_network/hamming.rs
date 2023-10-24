@@ -1,16 +1,17 @@
 use getopts::Matches;
 
 use crate::input::{get_input, get_test_pattern};
-use crate::utils::{ones_standard_input};
+use crate::utils::ones_standard_input;
 
 pub fn execute(matches: &Matches) {
     // Leemos las matrices de entrada
     let raw_input: Vec<(Vec<i8>, String)> = get_input(&matches);
     let mut input: Vec<(Vec<f64>, String)> = vec![];
+    let is_image_input = matches.opt_present("i");
 
     // Normalizamos los valores de la matriz, obteniendo una matriz de valores 1 o -1
     for item in raw_input {
-        input.push(ones_standard_input(item));
+        input.push(ones_standard_input(item, is_image_input));
     }
 
     // En base a las entradas creamos la matriz de peso
@@ -24,7 +25,8 @@ pub fn execute(matches: &Matches) {
 
     loop {
         // Se pide matriz de prueba
-        let test_pattern = ones_standard_input(get_test_pattern(&matches, input[0].0.len()));
+        let test_pattern =
+            ones_standard_input(get_test_pattern(&matches, input[0].0.len()), is_image_input);
 
         // Hacemos la evaluación de la matriz de prueba en conjunto con la
         // matriz de peso
@@ -52,15 +54,11 @@ pub fn execute(matches: &Matches) {
                     // Nos saltamos el valor de la variable dependiendo del
                     // índice de u que se esté calculando. En caso de que sea diferente
                     // se sumará
-                    value += if j != i {
-                        evaluation[j]
-                    } else {
-                        0.0
-                    }
+                    value += if j != i { evaluation[j] } else { 0.0 }
                 }
 
                 // Se aplica formula para calcular el valor del índice de u
-                u[i] = neuron_transformation(evaluation[i] - (1.0/((n as f64) - 1.0)) * value);
+                u[i] = neuron_transformation(evaluation[i] - (1.0 / ((n as f64) - 1.0)) * value);
             }
 
             let mut num_pos = 0;
@@ -115,7 +113,7 @@ fn create_weight_matrix(input: &Vec<(Vec<f64>, String)>) -> Vec<Vec<f64>> {
 
 // Calcula la bios, utilizada para la evaluación
 fn get_bios(n: usize, m: usize) -> Vec<f64> {
-    vec![(n as f64)/2.0; m]
+    vec![(n as f64) / 2.0; m]
 }
 
 // Evalúa una matriz de prueba haciendo uso de la matriz de peso
@@ -137,7 +135,7 @@ fn evaluation(weight_matrix: &Vec<Vec<f64>>, x_matrix: &Vec<f64>) -> Vec<f64> {
     }
 
     for i in 0..m {
-        u_matrix_result[i] = (u_matrix_result[i] + bios[i]) * (1.0/(n as f64));
+        u_matrix_result[i] = (u_matrix_result[i] + bios[i]) * (1.0 / (n as f64));
     }
 
     u_matrix_result
@@ -150,5 +148,5 @@ fn neuron_transformation(value: f64) -> f64 {
         1.0
     } else {
         value
-    }
+    };
 }

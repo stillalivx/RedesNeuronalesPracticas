@@ -1,17 +1,17 @@
 use getopts::Matches;
 
 use crate::input::{get_input, get_test_pattern};
-use crate::utils::{ones_standard_input, ones_matrix_transformation};
+use crate::utils::{ones_matrix_transformation, ones_standard_input};
 
 pub fn execute(matches: &Matches) {
-
     // Leemos las matrices de entrada
     let raw_input: Vec<(Vec<i8>, String)> = get_input(&matches);
     let mut input: Vec<(Vec<f64>, String)> = vec![];
+    let is_image_input = matches.opt_present("i");
 
     // Normalizamos los valores de la matriz, obteniendo una matriz de valores 1 o -1
     for item in raw_input {
-        input.push(ones_standard_input(item));
+        input.push(ones_standard_input(item, is_image_input));
     }
 
     // En base a las entradas creamos la matriz de peso
@@ -28,7 +28,8 @@ pub fn execute(matches: &Matches) {
         let mut y_matrices: Vec<(Vec<f64>, String)> = vec![];
 
         // Se pide la matriz de prueba
-        let test_input = ones_standard_input(get_test_pattern(&matches, input[0].0.len()));
+        let test_input =
+            ones_standard_input(get_test_pattern(&matches, input[0].0.len()), is_image_input);
 
         let input_matrix = ones_matrix_transformation(&test_input.0);
 
@@ -42,7 +43,11 @@ pub fn execute(matches: &Matches) {
 
             // Se verifica si converge Y(n) y Y(n - 1)
             if y_matrix.eq(&last_y_matrix.0) {
-                println!("Y{} converge con Y{}", y_matrices.len(), y_matrices.len() - 1);
+                println!(
+                    "Y{} converge con Y{}",
+                    y_matrices.len(),
+                    y_matrices.len() - 1
+                );
 
                 // Busque que Y asocie con algún patrón de entrada
                 for i in 0..input.len() {

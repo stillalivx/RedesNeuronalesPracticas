@@ -1,12 +1,12 @@
 extern crate image;
 
+mod input;
 mod neuronal_network;
 mod utils;
-mod input;
 
 use getopts::Options;
-use std::{env};
-use neuronal_network::{hopfield, hamming};
+use neuronal_network::{hamming, hopfield, lam};
+use std::env;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -27,6 +27,7 @@ fn main() {
 
     opts.optflag("", "hopfield", "Execute hopfield neuronal network");
     opts.optflag("", "hamming", "Execute hamming neuronal network");
+    opts.optflag("", "lam", "Execute lam neuronal network");
 
     let matches = match opts.parse(&args[1..]) {
         Ok(m) => m,
@@ -39,5 +40,7 @@ fn main() {
         hopfield::execute(&matches);
     } else if matches.opt_present("hamming") {
         hamming::execute(&matches);
+    } else if matches.opt_present("lam") {
+        lam::execute(&matches);
     }
 }
