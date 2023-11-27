@@ -5,7 +5,7 @@ mod neuronal_network;
 mod utils;
 
 use getopts::Options;
-use neuronal_network::{hamming, hopfield, lam};
+use neuronal_network::{hamming, hopfield, lam, perceptron};
 use std::env;
 
 fn main() {
@@ -28,6 +28,7 @@ fn main() {
     opts.optflag("", "hopfield", "Execute hopfield neuronal network");
     opts.optflag("", "hamming", "Execute hamming neuronal network");
     opts.optflag("", "lam", "Execute lam neuronal network");
+    opts.optflag("", "perceptron", "Execute perceptron neuronal network");
 
     let matches = match opts.parse(&args[1..]) {
         Ok(m) => m,
@@ -42,5 +43,7 @@ fn main() {
         hamming::execute(&matches);
     } else if matches.opt_present("lam") {
         lam::execute(&matches);
+    } else if matches.opt_present("perceptron") {
+        perceptron::execute(&matches);
     }
 }

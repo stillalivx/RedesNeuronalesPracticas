@@ -65,15 +65,13 @@ pub fn get_input(matches: &Matches) -> Vec<(Vec<i8>, String)> {
                 let input_matrix: Vec<i8> =
                     img.to_luma8().into_vec().iter().map(|&p| p as i8).collect();
 
-                let input_test = img.to_luma8().into_vec();
-
-                println!("{:?}", input_test);
-
                 if n == 0 {
                     n = input_matrix.len();
                 } else if input_matrix.len() != n {
                     panic!("The image must has the same number of neurons");
                 }
+
+                println!("{file_name}");
 
                 input.push((input_matrix, file_name.into()));
             }

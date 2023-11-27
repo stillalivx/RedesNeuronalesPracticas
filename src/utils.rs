@@ -2,27 +2,25 @@ pub fn ones_standard_input(matrix: (Vec<i8>, String), is_image_input: bool) -> (
     let n = matrix.0.len();
     let mut transformed_matrix: (Vec<f64>, String) = (vec![0.0; n], matrix.1);
     let mut min_value = 0.0;
-    let mut max_value = 1.0;
+    let max_value = 1.0;
 
-    if !(matrix.0.contains(&0) && matrix.0.contains(&1)) {
+    if !matrix.0.contains(&0) {
         min_value = -1.0;
     }
 
-    if matrix.0.contains(&0) && matrix.0.contains(&1) {
-        for i in 0..n {
-            if is_image_input {
-                transformed_matrix.0[i] = if matrix.0[i] < 0 {
-                    max_value
-                } else {
-                    min_value
-                };
+    for i in 0..n {
+        if is_image_input {
+            transformed_matrix.0[i] = if matrix.0[i] < 0 {
+                max_value
             } else {
-                transformed_matrix.0[i] = if matrix.0[i] > 0 {
-                    max_value
-                } else {
-                    min_value
-                };
-            }
+                min_value
+            };
+        } else {
+            transformed_matrix.0[i] = if matrix.0[i] > 0 {
+                max_value
+            } else {
+                min_value
+            };
         }
     }
 

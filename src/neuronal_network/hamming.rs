@@ -21,7 +21,8 @@ pub fn execute(matches: &Matches) {
         println!("{:?}", weight_matrix);
     }
 
-    let n = input.len();
+    let n_neurons = input[0].0.len();
+    let n_patterns = input.len();
 
     loop {
         // Se pide matriz de prueba
@@ -33,8 +34,6 @@ pub fn execute(matches: &Matches) {
         let evaluation = evaluation(&weight_matrix, &test_pattern.0);
         let mut reps = 1;
 
-        println!("{:?}", test_pattern);
-
         // Guardamos el resultado de la evaluación dentro de una matriz
         // con el identificador "0"
         let mut last_matrix: Vec<f64> = evaluation;
@@ -42,15 +41,17 @@ pub fn execute(matches: &Matches) {
         // Entramos en un ciclo en busca de converger y asociar. En caso de que esto no sea
         // posible en menos de 50 iteraciones, el programa da por hecho que la red neuronal
         // entró en un ciclo infinito y deja de ejecutarse la iteración
-        while reps < 50 {
-            let mut u = vec![0.0; n];
+        while reps < 1000 {
+            let last_matrix_neurons = last_matrix.len();
+
+            let mut u = vec![0.0; last_matrix_neurons];
             // Tomamos la última matriz calculada
             let evaluation = &last_matrix;
 
-            for i in 0..n {
+            for i in 0..n_patterns {
                 let mut value = 0.0;
 
-                for j in 0..n {
+                for j in 0..last_matrix_neurons {
                     // Nos saltamos el valor de la variable dependiendo del
                     // índice de u que se esté calculando. En caso de que sea diferente
                     // se sumará
@@ -58,7 +59,7 @@ pub fn execute(matches: &Matches) {
                 }
 
                 // Se aplica formula para calcular el valor del índice de u
-                u[i] = neuron_transformation(evaluation[i] - (1.0 / ((n as f64) - 1.0)) * value);
+                u[i] = neuron_transformation(evaluation[i] - (1.0 / ((n_neurons as f64) - 1.0)) * value);
             }
 
             let mut num_pos = 0;
@@ -66,9 +67,9 @@ pub fn execute(matches: &Matches) {
 
             // Se verifica que solo haya un valor positivo sumando la cantidad de veces
             // que se encuentra uno y guardando el índice donde se encuentra
-            for i in 0..n {
+            for i in 0..last_matrix_neurons {
                 if u[i] > 0.0 {
-                    idx = i + 1;
+                    idx = i;
                     num_pos += 1;
                 }
             }
@@ -79,7 +80,7 @@ pub fn execute(matches: &Matches) {
             // convergió y asocia con el índice del número positivo dentro de la matriz
             // u que se esta calculando
             if num_pos == 1 {
-                println!("Converge y asocia con {}", idx);
+                println!("Converge y asocia con {}", input[idx].1);
                 break;
             } else {
                 println!("No converge");
